@@ -11,13 +11,12 @@
         <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
+
             <style>
                 * { margin: 0; padding: 0; box-sizing: border-box; }
-                body { 
-                    font-family: 'Poppins', system-ui, sans-serif; 
+                body {
+                    font-family: 'Poppins', system-ui, sans-serif;
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     min-height: 100vh;
                     color: #333;
@@ -27,13 +26,13 @@
                 .hero-content { text-align: center; max-width: 800px; color: white; }
                 .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
                 .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; }
-                .btn { 
-                    display: inline-block; 
-                    padding: 15px 30px; 
-                    margin: 10px; 
-                    border-radius: 50px; 
-                    text-decoration: none; 
-                    font-weight: 600; 
+                .btn {
+                    display: inline-block;
+                    padding: 15px 30px;
+                    margin: 10px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 600;
                     transition: all 0.3s;
                     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
                 }
@@ -46,25 +45,25 @@
                 .feature-icon { font-size: 3rem; margin-bottom: 20px; }
                 .feature h3 { font-size: 1.5rem; margin-bottom: 15px; color: #333; }
                 .feature p { color: #666; line-height: 1.6; }
-                .nav { 
-                    position: fixed; 
-                    top: 0; 
-                    width: 100%; 
-                    background: rgba(255,255,255,0.95); 
-                    backdrop-filter: blur(10px); 
-                    padding: 15px 0; 
+                .nav {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    background: rgba(255,255,255,0.95);
+                    backdrop-filter: blur(10px);
+                    padding: 15px 0;
                     z-index: 1000;
                     border-bottom: 1px solid rgba(0,0,0,0.1);
                 }
                 .nav-content { display: flex; justify-content: space-between; align-items: center; }
                 .logo { font-size: 1.5rem; font-weight: 700; color: #667eea; }
                 .nav-links { display: flex; gap: 20px; align-items: center; }
-                .nav-links a { 
-                    text-decoration: none; 
-                    color: #333; 
-                    font-weight: 500; 
-                    padding: 10px 20px; 
-                    border-radius: 25px; 
+                .nav-links a {
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: 500;
+                    padding: 10px 20px;
+                    border-radius: 25px;
                     transition: all 0.3s;
                 }
                 .nav-links a:hover { background: #667eea; color: white; }
@@ -105,7 +104,7 @@
                 <div class="hero-content">
                     <h1>🏦 FinanceAI</h1>
                     <p>Seu assistente financeiro inteligente que ajuda você a tomar decisões mais inteligentes com seu dinheiro usando o poder da Inteligência Artificial</p>
-                    
+
                     @auth
                         <a href="{{ url('/dashboard') }}" class="btn btn-primary">🚀 Acessar Dashboard</a>
                         <a href="{{ route('reports.index') }}" class="btn btn-secondary">📊 Ver Relatórios</a>
