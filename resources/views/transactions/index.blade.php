@@ -34,7 +34,7 @@
                         <option value="expense" {{ request('type') === 'expense' ? 'selected' : '' }}>Gastos</option>
                     </select>
                 </div>
-                
+
                 <div>
                     <label class="form-label">Categoria</label>
                     <select name="category_id" class="form-select transition-all duration-200 focus:scale-[1.02]">
@@ -46,23 +46,23 @@
                         @endforeach
                     </select>
                 </div>
-                
+
                 <div>
                     <label class="form-label">Data Inicial</label>
-                    <input type="date" 
-                           name="date_from" 
-                           value="{{ request('date_from') }}" 
+                    <input type="date"
+                           name="date_from"
+                           value="{{ request('date_from') }}"
                            class="form-input transition-all duration-200 focus:scale-[1.02]">
                 </div>
-                
+
                 <div>
                     <label class="form-label">Data Final</label>
-                    <input type="date" 
-                           name="date_to" 
-                           value="{{ request('date_to') }}" 
+                    <input type="date"
+                           name="date_to"
+                           value="{{ request('date_to') }}"
                            class="form-input transition-all duration-200 focus:scale-[1.02]">
                 </div>
-                
+
                 <div class="flex flex-col sm:flex-row items-end gap-2 sm:col-span-1">
                     <button type="submit" class="btn-primary w-full sm:flex-1 hover-lift gap-2">
                         <x-icons.search class="w-4 h-4" />
@@ -92,7 +92,7 @@
 
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                 <h3 class="text-base sm:text-lg font-semibold text-primary-950 dark:text-primary-50">
-                    Transações 
+                    Transações
                     <span class="text-xs sm:text-sm font-normal text-primary-500 dark:text-primary-400 block sm:inline">
                         ({{ $transactions->total() }} {{ $transactions->total() === 1 ? 'resultado' : 'resultados' }})
                     </span>
@@ -101,10 +101,10 @@
                     Página {{ $transactions->currentPage() }} de {{ $transactions->lastPage() }}
                 </div>
             </div>
-            
+
             <div class="space-y-3">
                 @foreach($transactions as $index => $transaction)
-                <div class="transaction-item p-3 sm:p-4 bg-primary-50/50 dark:bg-primary-800/30 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-all group fade-in" 
+                <div class="transaction-item p-3 sm:p-4 bg-primary-50/50 dark:bg-primary-800/30 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-all group fade-in"
                      data-animate style="animation-delay: {{ 0.3 + ($index * 0.05) }}s;">
                     <div class="flex items-start sm:items-center justify-between gap-3">
                         <div class="flex items-start sm:items-center flex-1 min-w-0">
@@ -136,18 +136,18 @@
                                             {{ $transaction->type === 'expense' ? '-' : '+' }}R$ {{ number_format($transaction->amount, 2, ',', '.') }}
                                         </div>
                                         <div class="flex items-center gap-1 sm:gap-2 sm:mt-2">
-                                            <a href="{{ route('transactions.edit', $transaction) }}" 
-                                               class="btn-icon hover-scale p-1.5 sm:p-2" 
+                                            <a href="{{ route('transactions.edit', $transaction) }}"
+                                               class="btn-icon hover-scale p-1.5 sm:p-2"
                                                title="Editar">
                                                 <x-icons.edit class="w-3 h-3 sm:w-4 sm:h-4" />
                                             </a>
-                                            <form action="{{ route('transactions.destroy', $transaction) }}" 
-                                                  method="POST" 
+                                            <form action="{{ route('transactions.destroy', $transaction) }}"
+                                                  method="POST"
                                                   class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" 
-                                                        class="btn-icon-danger hover-scale p-1.5 sm:p-2" 
+                                                <button type="submit"
+                                                        class="btn-icon-danger hover-scale p-1.5 sm:p-2"
                                                         title="Excluir"
                                                         onclick="return confirm('Tem certeza de que deseja excluir esta transação?')">
                                                     <x-icons.trash class="w-3 h-3 sm:w-4 sm:h-4" />
@@ -165,7 +165,7 @@
 
             <!-- Paginação -->
             @if($transactions->hasPages())
-            <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-primary-100 dark:border-primary-800 fade-in" 
+            <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-primary-100 dark:border-primary-800 fade-in"
                  data-animate style="animation-delay: 0.5s;">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-2 order-2 sm:order-1">
@@ -191,7 +191,7 @@
                                     {{ $page }}
                                 </span>
                             @else
-                                <a href="{{ $url }}" 
+                                <a href="{{ $url }}"
                                    class="px-2 sm:px-3 py-1 sm:py-2 bg-primary-50 dark:bg-primary-800 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-700 transition-colors hover-scale text-xs sm:text-sm">
                                     {{ $page }}
                                 </a>
@@ -251,7 +251,6 @@
         </div>
     </div>
     @endif
-    
-    <!-- Incluir modais -->
-    @include('partials.transaction-modal')
 </x-app-layout>
+<!-- Incluir modais -->
+@include('partials.transaction-modal')

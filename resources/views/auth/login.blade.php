@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-auth-layout>
     <div class="space-y-6">
         <div class="text-center">
             <h1 class="text-2xl font-semibold text-primary-950 dark:text-primary-50">
@@ -100,4 +100,4 @@
             }
         }
     </script>
-</x-guest-layout>
+</x-auth-layout>

@@ -36,7 +36,7 @@
             <!-- Right side items -->
             <div class="hidden sm:flex sm:items-center sm:space-x-3">
                 <!-- Dark Mode Toggle -->
-                <x-dark-mode-toggle />
+                <x-dark-mode-toggle id="dark-mode-toggle-desktop" />
                 
                 <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">

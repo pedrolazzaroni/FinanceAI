@@ -65,7 +65,7 @@
                 <h2 class="text-xl font-semibold text-primary-950 dark:text-primary-50 mb-6">Metas em Andamento</h2>
                 <div class="space-y-6">
                     @foreach($activeGoals as $index => $goal)
-                    <div class="goal-card p-6 bg-primary-50/50 dark:bg-primary-800/30 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-all group hover-lift fade-in" 
+                    <div class="goal-card p-6 bg-primary-50/50 dark:bg-primary-800/30 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-all group hover-lift fade-in"
                          data-animate style="animation-delay: {{ 0.4 + ($index * 0.1) }}s;">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div class="flex-1">
@@ -91,7 +91,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                
+
                                 <div class="space-y-3">
                                     <div class="flex justify-between items-center">
                                         <span class="text-lg font-bold text-primary-900 dark:text-primary-100">
@@ -101,20 +101,20 @@
                                             {{ number_format($goal->progress_percentage, 1) }}%
                                         </span>
                                     </div>
-                                    
+
                                     <div class="relative">
                                         <div class="w-full bg-primary-100 dark:bg-primary-800 rounded-full h-3">
-                                            <div class="bg-gradient-to-r from-success to-success/80 h-3 rounded-full transition-all duration-1000 progress-bar" 
-                                                 style="width: 0%;" 
+                                            <div class="bg-gradient-to-r from-success to-success/80 h-3 rounded-full transition-all duration-1000 progress-bar"
+                                                 style="width: 0%;"
                                                  data-width="{{ $goal->progress_percentage }}%"></div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex justify-between text-sm text-primary-600 dark:text-primary-400">
                                         <span>Atual: R$ {{ number_format($goal->current_amount, 2, ',', '.') }}</span>
                                         <span>Meta: R$ {{ number_format($goal->target_amount, 2, ',', '.') }}</span>
                                     </div>
-                                    
+
                                     @if($goal->remaining_amount > 0)
                                     <p class="text-sm text-primary-500 dark:text-primary-400">
                                         Faltam R$ {{ number_format($goal->remaining_amount, 2, ',', '.') }} para atingir sua meta
@@ -122,15 +122,15 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-col gap-2 lg:w-48">
                                 <form action="{{ route('goals.update-progress', $goal) }}" method="POST" class="space-y-2">
                                     @csrf
                                     @method('PATCH')
-                                    <input type="number" 
-                                           name="amount" 
-                                           step="0.01" 
-                                           min="0" 
+                                    <input type="number"
+                                           name="amount"
+                                           step="0.01"
+                                           min="0"
                                            value="{{ $goal->current_amount }}"
                                            placeholder="Valor atual"
                                            class="form-input text-sm">
@@ -156,7 +156,7 @@
                 <h2 class="text-xl font-semibold text-primary-950 dark:text-primary-50 mb-6">Metas Concluídas Recentemente</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @foreach($completedGoals as $index => $goal)
-                    <div class="p-4 bg-success/5 border border-success/20 rounded-xl hover-lift fade-in" 
+                    <div class="p-4 bg-success/5 border border-success/20 rounded-xl hover-lift fade-in"
                          data-animate style="animation-delay: {{ 0.6 + ($index * 0.1) }}s;">
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="font-semibold text-primary-950 dark:text-primary-50">{{ $goal->name }}</h3>
@@ -207,7 +207,6 @@
             }, 500);
         });
     </script>
-    
-    <!-- Incluir modal de metas -->
-    @include('partials.goal-modal')
 </x-app-layout>
+<!-- Incluir modal de metas -->
+@include('partials.goal-modal')

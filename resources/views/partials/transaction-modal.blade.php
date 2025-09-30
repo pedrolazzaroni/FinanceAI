@@ -12,7 +12,7 @@
 
             <form action="{{ route('transactions.store') }}" method="POST" class="space-y-4">
                 @csrf
-                
+
                 <!-- Tipo de Transação -->
                 <div class="space-y-3">
                     <label class="form-label">Tipo de Transação</label>
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </label>
-                        
+
                         <label class="transaction-type-option flex items-center p-3 border-2 border-primary-200 dark:border-primary-700 rounded-lg cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-all">
                             <input type="radio" name="type" value="expense" class="sr-only">
                             <div class="flex items-center gap-3 w-full">
@@ -102,20 +102,20 @@
         // Lógica para filtrar categorias no modal de transação
         const typeLabels = document.querySelectorAll('#transaction-modal .transaction-type-option');
         const categorySelect = document.getElementById('modal_category_id');
-        
+
         if (categorySelect) {
             const categoryOptions = Array.from(categorySelect.options);
-            
+
             typeLabels.forEach(label => {
                 const radio = label.querySelector('input[name="type"]');
-                
+
                 label.addEventListener('click', function() {
                     // Remove seleção visual de todos
                     typeLabels.forEach(l => {
                         l.classList.remove('border-success', 'border-danger', 'bg-success/5', 'bg-danger/5');
                         l.classList.add('border-primary-200', 'dark:border-primary-700');
                     });
-                    
+
                     // Adiciona seleção visual ao clicado
                     if (radio.value === 'income') {
                         label.classList.remove('border-primary-200', 'dark:border-primary-700');
@@ -124,7 +124,7 @@
                         label.classList.remove('border-primary-200', 'dark:border-primary-700');
                         label.classList.add('border-danger', 'bg-danger/5');
                     }
-                    
+
                     radio.checked = true;
                     filterModalCategories();
                 });
@@ -132,10 +132,10 @@
 
             function filterModalCategories() {
                 const selectedType = document.querySelector('#transaction-modal input[name="type"]:checked')?.value;
-                
+
                 // Limpa o select
                 categorySelect.innerHTML = '<option value="">Selecione uma categoria</option>';
-                
+
                 // Adiciona apenas as categorias do tipo selecionado
                 categoryOptions.forEach(option => {
                     if (option.value === '') return;

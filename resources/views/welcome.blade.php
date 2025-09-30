@@ -332,28 +332,28 @@
                     const end = 8420.32;
                     const duration = 2000;
                     const startTime = performance.now();
-                    
+
                     function updateCounter(currentTime) {
                         const elapsed = currentTime - startTime;
                         const progress = Math.min(elapsed / duration, 1);
                         const current = start + (end - start) * progress;
-                        
+
                         counter.textContent = `R$ ${current.toLocaleString('pt-BR', {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2
                         })}`;
-                        
+
                         if (progress < 1) {
                             requestAnimationFrame(updateCounter);
                         }
                     }
-                    
+
                     // Aguardar um pouco antes de iniciar
                     setTimeout(() => {
                         requestAnimationFrame(updateCounter);
                     }, 1000);
                 }
-                
+
                 // Animar barra de progresso
                 const progressBar = document.querySelector('.progress-bar');
                 if (progressBar) {

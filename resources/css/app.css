@@ -9,7 +9,7 @@
 
     body {
         @apply bg-white dark:bg-primary-950 text-primary-800 dark:text-primary-200 font-sans antialiased;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-feature-settings: "kern" 1;
