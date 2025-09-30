@@ -4,186 +4,323 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>FinanceAI - Assistente Financeiro Inteligente</title>
+        <title>FinanceAI — Assistente Financeiro Inteligente</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Styles / Scripts -->
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-            <style>
-                * { margin: 0; padding: 0; box-sizing: border-box; }
-                body {
-                    font-family: 'Poppins', system-ui, sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    min-height: 100vh;
-                    color: #333;
-                }
-                .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-                .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-                .hero-content { text-align: center; max-width: 800px; color: white; }
-                .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-                .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; }
-                .btn {
-                    display: inline-block;
-                    padding: 15px 30px;
-                    margin: 10px;
-                    border-radius: 50px;
-                    text-decoration: none;
-                    font-weight: 600;
-                    transition: all 0.3s;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                }
-                .btn-primary { background: #4CAF50; color: white; }
-                .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
-                .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-                .features { background: white; padding: 80px 0; }
-                .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
-                .feature { text-align: center; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-                .feature-icon { font-size: 3rem; margin-bottom: 20px; }
-                .feature h3 { font-size: 1.5rem; margin-bottom: 15px; color: #333; }
-                .feature p { color: #666; line-height: 1.6; }
-                .nav {
-                    position: fixed;
-                    top: 0;
-                    width: 100%;
-                    background: rgba(255,255,255,0.95);
-                    backdrop-filter: blur(10px);
-                    padding: 15px 0;
-                    z-index: 1000;
-                    border-bottom: 1px solid rgba(0,0,0,0.1);
-                }
-                .nav-content { display: flex; justify-content: space-between; align-items: center; }
-                .logo { font-size: 1.5rem; font-weight: 700; color: #667eea; }
-                .nav-links { display: flex; gap: 20px; align-items: center; }
-                .nav-links a {
-                    text-decoration: none;
-                    color: #333;
-                    font-weight: 500;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    transition: all 0.3s;
-                }
-                .nav-links a:hover { background: #667eea; color: white; }
-                @media (max-width: 768px) {
-                    .hero h1 { font-size: 2.5rem; }
-                    .hero p { font-size: 1rem; }
-                    .features-grid { grid-template-columns: 1fr; }
-                    .nav-links { flex-direction: column; gap: 10px; }
-                }
-            </style>
-        @endif
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        <!-- Navigation -->
-        <nav class="nav">
-            <div class="container">
-                <div class="nav-content">
-                    <div class="logo">💰 FinanceAI</div>
+    <body class="bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-100 antialiased">
+        <div class="relative min-h-screen overflow-hidden">
+            <div class="absolute inset-0 -z-10">
+                <div class="absolute top-[-10rem] left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary-300/40 blur-3xl dark:bg-primary-800/40"></div>
+                <div class="absolute bottom-[-12rem] right-[-6rem] h-[28rem] w-[28rem] rounded-full bg-info/10 blur-3xl dark:bg-info/20"></div>
+                <div class="absolute top-1/3 left-[-8rem] h-[22rem] w-[22rem] rounded-full bg-success/10 blur-3xl dark:bg-success/20"></div>
+            </div>
+
+            <header class="relative border-b border-white/10 dark:border-primary-900/30 backdrop-blur-xl bg-white/70 dark:bg-primary-900/60">
+                <div class="max-w-6xl mx-auto px-6 sm:px-8 py-6 flex items-center justify-between">
+                    <a href="/" class="flex items-center gap-3 text-primary-900 dark:text-primary-100">
+                        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-900 text-white text-lg font-semibold shadow-apple dark:bg-primary-100 dark:text-primary-900">F</span>
+                        <span class="text-lg font-semibold tracking-tight">FinanceAI</span>
+                    </a>
                     @if (Route::has('login'))
-                        <div class="nav-links">
+                        <div class="flex items-center gap-3">
                             @auth
-                                <a href="{{ url('/dashboard') }}">🏠 Meu Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class="btn-secondary hidden sm:inline-flex">Dashboard</a>
+                                <a href="{{ route('reports.index') }}" class="btn-ghost hidden sm:inline-flex">Relatórios</a>
                             @else
-                                <a href="{{ route('login') }}">Entrar</a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}">Criar Conta</a>
+                                    <a href="{{ route('register') }}" class="btn-secondary hidden sm:inline-flex">Criar conta</a>
                                 @endif
+                                <a href="{{ route('login') }}" class="btn-primary">Entrar</a>
                             @endauth
                         </div>
                     @endif
                 </div>
-            </div>
-        </nav>
+            </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>🏦 FinanceAI</h1>
-                    <p>Seu assistente financeiro inteligente que ajuda você a tomar decisões mais inteligentes com seu dinheiro usando o poder da Inteligência Artificial</p>
+            <main class="relative">
+                <section class="max-w-6xl mx-auto px-6 sm:px-8 pt-20 lg:pt-28 pb-24">
+                    <div class="grid gap-16 lg:grid-cols-[1.1fr_1fr] items-center">
+                        <div class="space-y-8">
+                            <span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-sm font-medium text-primary-600 shadow-apple dark:bg-primary-900/80 dark:text-primary-200">
+                                <span class="h-2 w-2 rounded-full bg-success"></span>
+                                Inteligência financeira em tempo real
+                            </span>
+                            <div class="space-y-5">
+                                <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-primary-950 dark:text-primary-50">
+                                    Controle total das suas finanças com um toque minimalista
+                                </h1>
+                                <p class="text-lg text-primary-600 dark:text-primary-300 max-w-xl">
+                                    Planeje, acompanhe e otimize cada decisão financeira com dashboards intuitivos, relatórios inteligentes e automações guiadas por IA — tudo em um só lugar.
+                                </p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="btn-primary">Acessar dashboard</a>
+                                    <a href="{{ route('reports.index') }}" class="btn-secondary">Ver relatórios</a>
+                                @else
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="btn-primary">Começar gratuitamente</a>
+                                    @endif
+                                    <a href="{{ route('login') }}" class="btn-secondary">Já tenho conta</a>
+                                @endauth
+                            </div>
+                            <div class="flex flex-wrap items-center gap-6 text-sm text-primary-500 dark:text-primary-400">
+                                <div class="flex items-center gap-2">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-success"></span>
+                                    Insights personalizados por IA
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-info"></span>
+                                    Relatórios dinâmicos em 1 clique
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-danger"></span>
+                                    Segurança com criptografia avançada
+                                </div>
+                            </div>
+                        </div>
 
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="btn btn-primary">🚀 Acessar Dashboard</a>
-                        <a href="{{ route('reports.index') }}" class="btn btn-secondary">📊 Ver Relatórios</a>
-                    @else
-                        <a href="{{ route('register') }}" class="btn btn-primary">🆕 Começar Gratuitamente</a>
-                        <a href="{{ route('login') }}" class="btn btn-secondary">📱 Fazer Login</a>
-                    @endauth
+                        <div class="relative">
+                            <div class="absolute -top-10 -left-10 hidden lg:block h-32 w-32 rounded-3xl bg-white/40 blur-3xl dark:bg-primary-800/40"></div>
+                            <div class="card-glass relative p-6 sm:p-8 shadow-apple-lg">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-primary-500 dark:text-primary-400">Saldo do mês</p>
+                                        <p class="mt-2 text-3xl font-semibold text-primary-900 dark:text-primary-50">R$ 8.420,32</p>
+                                    </div>
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-success/15">
+                                        <x-icons.trending-up class="w-6 h-6 text-success" />
+                                    </div>
+                                </div>
+                                <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                                    <div class="rounded-2xl bg-primary-50/80 p-5 dark:bg-primary-900/70">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <span class="text-xs font-medium text-success/80">Receitas</span>
+                                                <p class="mt-2 text-xl font-semibold text-primary-900 dark:text-primary-50">R$ 12.300</p>
+                                            </div>
+                                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-xs dark:bg-primary-800">
+                                                <x-icons.plus-circle class="w-5 h-5 text-success" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 flex items-center gap-2 text-xs text-primary-500 dark:text-primary-400">
+                                            <x-icons.trending-up class="w-4 h-4 text-success" />
+                                            +18% vs mês anterior
+                                        </div>
+                                    </div>
+                                    <div class="rounded-2xl bg-primary-50/80 p-5 dark:bg-primary-900/70">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <span class="text-xs font-medium text-danger/80">Gastos</span>
+                                                <p class="mt-2 text-xl font-semibold text-primary-900 dark:text-primary-50">R$ 3.880</p>
+                                            </div>
+                                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-xs dark:bg-primary-800">
+                                                <x-icons.trending-down class="w-5 h-5 text-danger" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 flex items-center gap-2 text-xs text-primary-500 dark:text-primary-400">
+                                            <x-icons.clock class="w-4 h-4" />
+                                            Alertas preventivos ativos
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 rounded-2xl border border-primary-100/60 p-5 dark:border-primary-800">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-primary-500 dark:text-primary-300">Categorias com maior gasto</p>
+                                            <p class="mt-3 text-sm text-primary-500 dark:text-primary-400">Assinaturas • Alimentação • Mobilidade</p>
+                                        </div>
+                                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-800">
+                                            <x-icons.chart class="w-5 h-5 text-primary-600 dark:text-primary-300" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white/80 dark:bg-primary-900/40 border-y border-white/50 dark:border-primary-900/30">
+                    <div class="max-w-6xl mx-auto px-6 sm:px-8 py-20">
+                        <div class="flex flex-col gap-4 text-center">
+                            <span class="text-sm font-medium uppercase tracking-[0.3em] text-primary-400">Por que FinanceAI?</span>
+                            <h2 class="text-3xl font-semibold text-primary-950 dark:text-primary-50">Minimalismo que se traduz em clareza financeira</h2>
+                            <p class="max-w-3xl mx-auto text-primary-600 dark:text-primary-300">
+                                Todos os recursos que você precisa, sem distrações. Criamos uma experiência fluida com base na mesma linguagem visual do dashboard para que a mudança entre páginas seja natural.
+                            </p>
+                        </div>
+                        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-800">
+                                    <x-icons.list class="w-5 h-5 text-primary-600 dark:text-primary-300" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Planejamento estruturado</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Categorize receitas e despesas em segundos e acompanhe metas com indicadores de performance em tempo real.
+                                </p>
+                            </div>
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-success/15">
+                                    <x-icons.filter class="w-5 h-5 text-success" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Insights acionáveis</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Detecte padrões com nossa IA e receba sugestões automáticas para reduzir gastos e aproveitar oportunidades.
+                                </p>
+                            </div>
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-info/15">
+                                    <x-icons.search class="w-5 h-5 text-info" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Transparência total</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Relatórios precisos, visualizações limpas e filtros avançados para entender cada movimento em segundos.
+                                </p>
+                            </div>
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-danger/15">
+                                    <x-icons.clock class="w-5 h-5 text-danger" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Alertas inteligentes</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Receba notificações antes que oscilações impactem seu orçamento. Reações rápidas com base em dados confiáveis.
+                                </p>
+                            </div>
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-800">
+                                    <x-icons.moon class="w-5 h-5 text-primary-600 dark:text-primary-300" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Dark mode elegante</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Comutação automática entre temas claro e escuro para acompanhar o dashboard sem cansar a visão.
+                                </p>
+                            </div>
+                            <div class="card-minimal p-6 space-y-4">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-800">
+                                    <x-icons.settings class="w-5 h-5 text-primary-600 dark:text-primary-300" />
+                                </div>
+                                <h3 class="text-lg font-semibold">Segurança de ponta a ponta</h3>
+                                <p class="text-sm leading-relaxed text-primary-500 dark:text-primary-400">
+                                    Dados protegidos com criptografia e autenticação reforçada para manter suas informações sob controle.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="max-w-6xl mx-auto px-6 sm:px-8 py-20">
+                    <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr] items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-semibold">Conectado ao seu cotidiano financeiro</h3>
+                            <p class="text-primary-600 dark:text-primary-300">
+                                A mesma estética minimalista do dashboard permeia todos os fluxos de navegação. Listas leves, cards com microinterações e tipografia precisa entregam uma experiência agradável em qualquer dispositivo.
+                            </p>
+                            <ul class="space-y-4 text-sm text-primary-500 dark:text-primary-400">
+                                <li class="flex items-center gap-3">
+                                    <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-800">
+                                        <x-icons.home class="w-4 h-4 text-primary-600 dark:text-primary-300" />
+                                    </span>
+                                    Dashboard com visão consolidada por mês e categoria
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-success/15">
+                                        <x-icons.plus class="w-4 h-4 text-success" />
+                                    </span>
+                                    Criador de transações guiado com validação inteligente
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-info/15">
+                                        <x-icons.chart class="w-4 h-4 text-info" />
+                                    </span>
+                                    Relatórios customizáveis com exportação em 1 clique
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-minimal relative overflow-hidden rounded-3xl border border-white/60 p-8 shadow-apple-lg dark:border-primary-900/40">
+                            <div class="absolute -top-24 right-0 h-40 w-40 rounded-full bg-info/10 blur-3xl"></div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-primary-500 dark:text-primary-300">Resumo semanal</p>
+                                    <p class="mt-3 text-2xl font-semibold">R$ 2.140 de economia</p>
+                                </div>
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-900 text-white dark:bg-primary-100 dark:text-primary-900">
+                                    <x-icons.chart class="w-6 h-6" />
+                                </div>
+                            </div>
+                            <div class="mt-8 space-y-5">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-primary-500 dark:text-primary-400">Meta mensal</span>
+                                    <span class="font-medium text-success">82% concluída</span>
+                                </div>
+                                <div class="h-2 w-full rounded-full bg-primary-100 dark:bg-primary-800">
+                                    <div class="h-full w-4/5 rounded-full bg-success"></div>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-primary-500 dark:text-primary-400">Alertas resolvidos</span>
+                                    <span class="font-medium text-info">12 neste mês</span>
+                                </div>
+                                <div class="flex flex-col gap-3 text-sm text-primary-500 dark:text-primary-400">
+                                    <div class="flex justify-between">
+                                        <span>Assinaturas</span>
+                                        <span class="font-medium">-12%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Transporte</span>
+                                        <span class="font-medium">-8%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Restaurantes</span>
+                                        <span class="font-medium text-danger">+4%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative py-20">
+                    <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center">
+                        <div class="rounded-3xl border border-primary-100/70 bg-white/80 p-10 shadow-apple-lg backdrop-blur-xl dark:border-primary-900/40 dark:bg-primary-900/60">
+                            <p class="text-sm font-medium uppercase tracking-[0.25em] text-primary-400">Pronto para começar?</p>
+                            <h3 class="mt-6 text-3xl font-semibold text-primary-950 dark:text-primary-50">Modernize sua relação com o dinheiro hoje mesmo</h3>
+                            <p class="mt-4 text-primary-600 dark:text-primary-300">
+                                Conecte-se ao FinanceAI e tenha acesso instantâneo ao ecossistema completo: dashboard minimalista, relatórios inteligentes, dark mode e uma UX que realmente guia suas próximas decisões.
+                            </p>
+                            <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                                @guest
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="btn-primary">Criar conta gratuita</a>
+                                    @endif
+                                    <a href="{{ route('login') }}" class="btn-secondary">Fazer login</a>
+                                @else
+                                    <a href="{{ url('/dashboard') }}" class="btn-primary">Voltar ao dashboard</a>
+                                    <a href="{{ route('reports.index') }}" class="btn-secondary">Explorar relatórios</a>
+                                @endguest
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="border-t border-white/50 bg-white/70 py-10 text-sm text-primary-500 backdrop-blur-xl dark:border-primary-900/40 dark:bg-primary-950">
+                <div class="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center gap-3 text-primary-600 dark:text-primary-300">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary-900 text-white font-semibold dark:bg-primary-100 dark:text-primary-900">F</span>
+                        <span>FinanceAI • Assistente financeiro inteligente</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-primary-400">
+                        <span>Design minimalista inspirado no dashboard</span>
+                        <span>Privacidade e segurança em primeiro lugar</span>
+                        <span>Atualizado {{ now()->format('Y') }}</span>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <div style="text-align: center;">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: #333;">✨ Recursos Incríveis</h2>
-                    <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">Gerencie suas finanças de forma inteligente com ferramentas modernas e análises baseadas em IA</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature">
-                        <div class="feature-icon">💰</div>
-                        <h3>Gestão Completa</h3>
-                        <p>Controle total de receitas e gastos com categorização inteligente e interface intuitiva</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">🤖</div>
-                        <h3>Inteligência Artificial</h3>
-                        <p>Análises personalizadas e recomendações inteligentes baseadas nos seus padrões financeiros</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">📊</div>
-                        <h3>Relatórios Detalhados</h3>
-                        <p>Visualize sua evolução financeira com gráficos e relatórios de fácil compreensão</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Categorias Inteligentes</h3>
-                        <p>Organize automaticamente seus gastos em categorias visuais e funcionais</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">📱</div>
-                        <h3>Interface Moderna</h3>
-                        <p>Design responsivo e intuitivo que funciona perfeitamente em qualquer dispositivo</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Seguro e Privado</h3>
-                        <p>Seus dados financeiros ficam protegidos com criptografia de alto nível</p>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 60px;">
-                    @guest
-                        <h3 style="margin-bottom: 30px; color: #333;">🚀 Pronto para transformar suas finanças?</h3>
-                        <a href="{{ route('register') }}" class="btn btn-primary" style="background: linear-gradient(45deg, #4CAF50, #45a049);">
-                            ✨ Criar Conta Gratuita
-                        </a>
-                    @else
-                        <h3 style="margin-bottom: 30px; color: #333;">🎉 Bem-vindo de volta, {{ Auth::user()->name }}!</h3>
-                        <a href="{{ url('/dashboard') }}" class="btn btn-primary" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                            📈 Continuar Gerenciando
-                        </a>
-                    @endguest
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer style="background: #333; color: white; text-align: center; padding: 40px 0;">
-            <div class="container">
-                <p style="margin-bottom: 10px;">💰 <strong>FinanceAI</strong> - Seu assistente financeiro inteligente</p>
-                <p style="opacity: 0.7;">Desenvolvido com ❤️ usando tecnologias modernas</p>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </body>
 </html>

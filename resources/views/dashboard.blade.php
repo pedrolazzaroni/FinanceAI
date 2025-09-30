@@ -9,8 +9,8 @@
                     Gerencie suas finanças de forma inteligente
                 </p>
             </div>
-            <a href="{{ route('transactions.create') }}" class="btn-primary hover-lift">
-                <x-icons.plus class="w-4 h-4 mr-2" />
+            <a href="{{ route('transactions.create') }}" class="btn-primary hover-lift gap-2">
+                <x-icons.plus class="w-4 h-4" />
                 Nova Transação
             </a>
         </div>
@@ -27,7 +27,7 @@
                         R$ {{ number_format($monthlyIncome, 2, ',', '.') }}
                     </p>
                 </div>
-                <div class="w-12 h-12 bg-success/10 rounded-2xl flex items-center justify-center">
+                <div class="w-12 h-12 bg-success/10 rounded-2xl grid place-items-center">
                     <x-icons.trending-up class="w-6 h-6 text-success" />
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         R$ {{ number_format($monthlyExpenses, 2, ',', '.') }}
                     </p>
                 </div>
-                <div class="w-12 h-12 bg-danger/10 rounded-2xl flex items-center justify-center">
+                <div class="w-12 h-12 bg-danger/10 rounded-2xl grid place-items-center">
                     <x-icons.trending-down class="w-6 h-6 text-danger" />
                 </div>
             </div>
@@ -59,7 +59,7 @@
                         R$ {{ number_format($monthlyBalance, 2, ',', '.') }}
                     </p>
                 </div>
-                <div class="w-12 h-12 {{ $monthlyBalance >= 0 ? 'bg-info/10' : 'bg-danger/10' }} rounded-2xl flex items-center justify-center">
+                <div class="w-12 h-12 {{ $monthlyBalance >= 0 ? 'bg-info/10' : 'bg-danger/10' }} rounded-2xl grid place-items-center">
                     <x-icons.chart class="w-6 h-6 {{ $monthlyBalance >= 0 ? 'text-info' : 'text-danger' }}" />
                 </div>
             </div>
@@ -71,22 +71,22 @@
         <div class="card-minimal slide-up">
             <div class="p-6">
                 <div class="flex items-center mb-6">
-                    <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center mr-4">
+                    <div class="w-10 h-10 bg-primary-100 rounded-xl grid place-items-center mr-4">
                         <x-icons.plus-circle class="w-5 h-5 text-primary-600" />
                     </div>
                     <h3 class="text-lg font-semibold text-primary-950">Ações Rápidas</h3>
                 </div>
                 <div class="space-y-3">
-                    <a href="{{ route('transactions.create') }}" class="block w-full btn-primary text-center hover-lift">
-                        <x-icons.plus class="w-4 h-4 mr-2" />
+                    <a href="{{ route('transactions.create') }}" class="block w-full btn-primary text-center hover-lift gap-2">
+                        <x-icons.plus class="w-4 h-4" />
                         Adicionar Transação
                     </a>
-                    <a href="{{ route('transactions.index') }}" class="block w-full btn-secondary text-center hover-lift">
-                        <x-icons.list class="w-4 h-4 mr-2" />
+                    <a href="{{ route('transactions.index') }}" class="block w-full btn-secondary text-center hover-lift gap-2">
+                        <x-icons.list class="w-4 h-4" />
                         Ver Todas as Transações
                     </a>
-                    <a href="{{ route('reports.index') }}" class="block w-full btn-secondary text-center hover-lift">
-                        <x-icons.chart class="w-4 h-4 mr-2" />
+                    <a href="{{ route('reports.index') }}" class="block w-full btn-secondary text-center hover-lift gap-2">
+                        <x-icons.chart class="w-4 h-4" />
                         Ver Relatórios
                     </a>
                 </div>
@@ -98,7 +98,7 @@
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center mr-4">
+                        <div class="w-10 h-10 bg-primary-100 rounded-xl grid place-items-center mr-4">
                             <x-icons.clock class="w-5 h-5 text-primary-600" />
                         </div>
                         <h3 class="text-lg font-semibold text-primary-950">Transações Recentes</h3>
@@ -107,13 +107,13 @@
                         Ver todas
                     </a>
                 </div>
-                
+
                 @if($recentTransactions->count() > 0)
                     <div class="space-y-3">
                         @foreach($recentTransactions as $transaction)
                             <div class="flex justify-between items-center p-4 bg-primary-50/50 rounded-xl hover:bg-primary-50 transition-colors group">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mr-4 shadow-xs group-hover:shadow-apple transition-shadow">
+                                    <div class="w-10 h-10 bg-white rounded-xl grid place-items-center mr-4 shadow-xs group-hover:shadow-apple transition-shadow">
                                         @if($transaction->type === 'income')
                                             <x-icons.trending-up class="w-5 h-5 text-success" />
                                         @else
@@ -137,12 +137,12 @@
                     </div>
                 @else
                     <div class="text-center py-12">
-                        <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 bg-primary-100 rounded-2xl grid place-items-center mx-auto mb-4">
                             <x-icons.money class="w-8 h-8 text-primary-400" />
                         </div>
                         <p class="text-primary-500 mb-4">Nenhuma transação encontrada</p>
-                        <a href="{{ route('transactions.create') }}" class="btn-primary">
-                            <x-icons.plus class="w-4 h-4 mr-2" />
+                        <a href="{{ route('transactions.create') }}" class="btn-primary gap-2">
+                            <x-icons.plus class="w-4 h-4" />
                             Criar primeira transação
                         </a>
                     </div>
@@ -158,7 +158,7 @@
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center mr-4">
+                        <div class="w-10 h-10 bg-primary-100 rounded-xl grid place-items-center mr-4">
                             <x-icons.tag class="w-5 h-5 text-primary-600" />
                         </div>
                         <h3 class="text-lg font-semibold text-primary-950">Gastos por Categoria</h3>
@@ -170,7 +170,7 @@
                         <div class="p-4 bg-primary-50/50 rounded-xl hover:bg-primary-50 transition-colors group hover-lift">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mr-3 shadow-xs group-hover:shadow-apple transition-shadow">
+                                    <div class="w-10 h-10 bg-white rounded-xl grid place-items-center mr-3 shadow-xs group-hover:shadow-apple transition-shadow">
                                         <x-icons.tag class="w-4 h-4 text-primary-600" />
                                     </div>
                                     <span class="font-medium text-primary-900">
