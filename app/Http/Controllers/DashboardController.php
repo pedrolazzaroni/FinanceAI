@@ -49,6 +49,13 @@ class DashboardController extends Controller
         $incomeCategories = Category::income()->get();
         $expenseCategories = Category::expense()->get();
         
+        // Metas ativas
+        $activeGoals = $user->goals()
+            ->active()
+            ->orderBy('target_date')
+            ->limit(3)
+            ->get();
+        
         return view('dashboard', compact(
             'monthlyIncome',
             'monthlyExpenses', 
@@ -56,7 +63,8 @@ class DashboardController extends Controller
             'recentTransactions',
             'expensesByCategory',
             'incomeCategories',
-            'expenseCategories'
+            'expenseCategories',
+            'activeGoals'
         ));
     }
 }

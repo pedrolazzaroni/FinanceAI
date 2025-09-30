@@ -208,6 +208,214 @@
     }
 }
 
+/* Transições de página melhoradas */
+.page-transitioning {
+    opacity: 0.9;
+    transform: scale(0.99);
+    pointer-events: none;
+    transition: all 0.15s ease-out;
+}
+
+.theme-transitioning * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Animações melhoradas - mais fluidas */
+.animate-in {
+    animation: slideUpFade 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-in.delay-1 { animation-delay: 0.05s; }
+.animate-in.delay-2 { animation-delay: 0.1s; }
+.animate-in.delay-3 { animation-delay: 0.15s; }
+.animate-in.delay-4 { animation-delay: 0.2s; }
+
+/* Estados iniciais para animações - mais suaves */
+.fade-in,
+.slide-up,
+.scale-in,
+[data-animate]:not(.animate-in) {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estados ativados */
+.fade-in.animate-in,
+.slide-up.animate-in,
+.scale-in.animate-in,
+[data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efeito ripple para botões */
+.btn-primary,
+.btn-secondary {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+/* Loading spinner */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.spinner {
+    display: inline-block;
+}
+
+/* Micro-interações para cards - mais fluidas */
+.card,
+.card-minimal,
+.card-glass {
+    transform: translateZ(0);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover,
+.card-minimal:hover,
+.card-glass:hover {
+    transform: translateY(-1px) translateZ(0);
+}
+
+.metric-card {
+    transform: translateZ(0);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+    transform: translateY(-1px) scale(1.005) translateZ(0);
+}
+
+/* Melhorias para hover states */
+.hover-lift:hover {
+    transform: translateY(-0.5px) translateZ(0);
+}
+
+.hover-scale:hover {
+    transform: scale(1.005) translateZ(0);
+}
+
+/* Transições suaves para navegação */
+.nav-item {
+    transform: translateZ(0);
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover {
+    transform: translateX(0.5px) translateZ(0);
+}
+
+/* Melhorias para forms */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    transform: translateZ(0);
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animações de entrada escalonadas - mais fluidas */
+.stagger-children > * {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: slideUpFade 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.11s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.14s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.17s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.2s; }
+
+/* Melhorias para badges */
+.badge {
+    transform: translateZ(0);
+    transition: all 0.12s ease;
+}
+
+.badge:hover {
+    transform: scale(1.01) translateZ(0);
+}
+
+/* Efeitos para listas */
+.transaction-item,
+.category-item,
+.evolution-item {
+    transform: translateZ(0);
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transaction-item:hover,
+.category-item:hover,
+.evolution-item:hover {
+    transform: translateX(1px) translateZ(0);
+}
+
+/* Sistema de modais melhorado */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 32rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalSlideUp 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .modal-content {
+    background: rgb(30 41 59);
+}
+
+/* Keyframes melhorados */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -216,7 +424,18 @@
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
     }
     to {
         opacity: 1;
@@ -227,10 +446,139 @@
 @keyframes scaleIn {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.99);
     }
     to {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Melhorias específicas para dark mode */
+.dark .card,
+.dark .card-minimal,
+.dark .card-glass {
+    backdrop-filter: blur(20px);
+}
+
+/* Estados de loading mais elegantes */
+.skeleton {
+    background: linear-gradient(90deg,
+        rgba(var(--primary-200), 0.3) 25%,
+        rgba(var(--primary-100), 0.5) 50%,
+        rgba(var(--primary-200), 0.3) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Melhorias para mobile */
+@media (max-width: 768px) {
+    .hover-lift:active,
+    .hover-scale:active {
+        transform: scale(0.99) translateZ(0);
+    }
+
+    .card:active,
+    .card-minimal:active {
+        transform: scale(0.99) translateZ(0);
+    }
+
+    .modal-content {
+        margin: 0.5rem;
+        max-height: calc(100vh - 1rem);
+        border-radius: 0.75rem;
+    }
+
+    /* Melhorias específicas para formulários mobile */
+    .form-input,
+    .form-select,
+    .form-textarea {
+        font-size: 16px; /* Previne zoom no iOS */
+        min-height: 44px; /* Garante área de toque adequada */
+    }
+
+    /* Melhorias para botões mobile */
+    .btn {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+
+    .btn-icon {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Melhorias específicas para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .card,
+    .card-minimal,
+    .card-glass {
+        padding: 1.25rem;
+    }
+}
+
+/* Melhorias para telas grandes */
+@media (min-width: 1024px) {
+    .modal-content {
+        max-width: 36rem;
+    }
+}
+
+/* Transição suave entre páginas */
+.page-enter {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.page-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-exit-active {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
 }

@@ -22,24 +22,34 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Modal Manager -->
+        <script src="{{ asset('js/modal-manager.js') }}"></script>
     </head>
-    <body class="h-full bg-primary-50 dark:bg-primary-950 antialiased">
+    <body class="h-full bg-gradient-to-br from-primary-50 via-white to-primary-100 dark:from-primary-950 dark:via-primary-900 dark:to-primary-950 antialiased">
         <div class="min-h-full">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white/80 dark:bg-primary-900/80 backdrop-blur-xl border-b border-primary-100 dark:border-primary-800 sticky top-16 z-40">
-                    <div class="max-w-6xl mx-auto px-6 sm:px-8 py-6">
+                <header class="bg-white/90 dark:bg-primary-900/90 backdrop-blur-xl border-b border-primary-100 dark:border-primary-800 sticky top-16 z-40">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main class="max-w-6xl mx-auto px-6 sm:px-8 py-8 fade-in">
+            <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 fade-in">
                 {{ $slot }}
             </main>
+        </div>
+
+        <!-- Background decorativo -->
+        <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+            <div class="absolute top-0 left-1/4 w-32 h-32 bg-primary-200/10 dark:bg-primary-800/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-info/5 dark:bg-info/10 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-0 w-24 h-24 bg-success/5 dark:bg-success/10 rounded-full blur-2xl"></div>
         </div>
     </body>
 </html>

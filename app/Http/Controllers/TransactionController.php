@@ -58,28 +58,55 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'type' => 'required|in:income,expense',
-            'category_id' => 'required|exists:categories,id',
-            'amount' => 'required|numeric|min:0.01',
-            'description' => 'required|string|max:255',
-            'transaction_date' => 'required|date',
-            'notes' => 'nullable|string'
-        ]);
+        try {
+            $request->validate([
+                'type' => 'required|in:income,expense',
+                'category_id' => 'required|exists:categories,id',
+                'amount' => 'required|numeric|min:0.01',
+                'description' => 'required|string|max:255',
+                'transaction_date' => 'required|date',
+                'notes' => 'nullable|string'
+            ]);
 
-        $user = Auth::user();
-        
-        $user->transactions()->create([
-            'type' => $request->type,
-            'category_id' => $request->category_id,
-            'amount' => $request->amount,
-            'description' => $request->description,
-            'transaction_date' => $request->transaction_date,
-            'notes' => $request->notes
-        ]);
+            $user = Auth::user();
+            
+            $transaction = $user->transactions()->create([
+                'type' => $request->type,
+                'category_id' => $request->category_id,
+                'amount' => $request->amount,
+                'description' => $request->description,
+                'transaction_date' => $request->transaction_date,
+                'notes' => $request->notes
+            ]);
 
-        return redirect()->route('transactions.index')
-                        ->with('success', 'Transação adicionada com sucesso!');
+            // Se for uma requisição AJAX, retornar JSON
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Transação adicionada com sucesso!',
+                    'transaction' => $transaction->load('category')
+                ]);
+            }
+
+            return redirect()->route('transactions.index')
+                            ->with('success', 'Transação adicionada com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $e->errors()
+                ], 422);
+            }
+            throw $e;
+        } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Erro interno do servidor'
+                ], 500);
+            }
+            throw $e;
+        }
     }
 
     /**
